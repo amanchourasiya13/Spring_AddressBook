@@ -2,12 +2,17 @@ package com.bridgelabz.addressbook.controller;
 
 import com.bridgelabz.addressbook.dto.AddressBookDTO;
 import com.bridgelabz.addressbook.model.AddressBook;
+import com.bridgelabz.addressbook.service.AddressBookService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/addressbook")
 public class AddressBookController {
+
+    @Autowired
+    private AddressBookService addressBookService;
 
     @GetMapping
     public String test() {
@@ -16,27 +21,26 @@ public class AddressBookController {
 
     @PostMapping("/add")
     public ResponseEntity<AddressBook> addAddress(@RequestBody AddressBookDTO addressBookDTO) {
-        AddressBook newEntry = new AddressBook(1L, addressBookDTO.getName(), addressBookDTO.getAddress(), addressBookDTO.getCity(), addressBookDTO.getPhone());
-        return ResponseEntity.ok(newEntry);
+        return ResponseEntity.ok(addressBookService.addAddress(addressBookDTO));
     }
 
     @GetMapping("/all")
     public ResponseEntity<String> getAllAddresses() {
-        return ResponseEntity.ok("Returning all addresses");
+        return ResponseEntity.ok(addressBookService.getAllAddresses());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<String> getAddressById(@PathVariable Long id) {
-        return ResponseEntity.ok("Returning address with ID: " + id );
+        return ResponseEntity.ok(addressBookService.getAddressById(id));
     }
 
     @PutMapping("/update/{id}")
     public ResponseEntity<String> updateAddress(@PathVariable Long id, @RequestBody AddressBookDTO addressBookDTO) {
-        return ResponseEntity.ok("Address with ID " + id + " updated successfully.");
+        return ResponseEntity.ok(addressBookService.updateAddress(id, addressBookDTO));
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteAddress(@PathVariable Long id) {
-        return ResponseEntity.ok("Address with ID " + id + " deleted successfully");
+        return ResponseEntity.ok(addressBookService.deleteAddress(id));
     }
 }
