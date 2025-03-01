@@ -1,19 +1,23 @@
 package com.bridgelabz.addressbook.controller;
 
+import com.bridgelabz.addressbook.dto.AddressBookDTO;
+import com.bridgelabz.addressbook.model.AddressBook;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/addressbook")
 public class AddressBookController {
+
     @GetMapping
     public String test() {
         return "Spring Boot is running!";
     }
 
     @PostMapping("/add")
-    public ResponseEntity<String> addAddress() {
-        return ResponseEntity.ok("Address added successfully");
+    public ResponseEntity<AddressBook> addAddress(@RequestBody AddressBookDTO addressBookDTO) {
+        AddressBook newEntry = new AddressBook(1L, addressBookDTO.getName(), addressBookDTO.getAddress(), addressBookDTO.getCity(), addressBookDTO.getPhone());
+        return ResponseEntity.ok(newEntry);
     }
 
     @GetMapping("/all")
@@ -23,12 +27,12 @@ public class AddressBookController {
 
     @GetMapping("/{id}")
     public ResponseEntity<String> getAddressById(@PathVariable Long id) {
-        return ResponseEntity.ok("Returning address with ID: " + id);
+        return ResponseEntity.ok("Returning address with ID: " + id );
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<String> updateAddress(@PathVariable Long id) {
-        return ResponseEntity.ok("Address with ID " + id + " updated successfully");
+    public ResponseEntity<String> updateAddress(@PathVariable Long id, @RequestBody AddressBookDTO addressBookDTO) {
+        return ResponseEntity.ok("Address with ID " + id + " updated successfully.");
     }
 
     @DeleteMapping("/delete/{id}")
