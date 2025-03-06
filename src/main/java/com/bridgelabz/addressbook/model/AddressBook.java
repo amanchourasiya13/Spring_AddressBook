@@ -1,15 +1,24 @@
 package com.bridgelabz.addressbook.model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "address_book") // Defines table name
 public class AddressBook {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-generate ID
     private Long id;
+
     private String name;
     private String address;
     private String city;
     private String phone;
 
-    // Constructors
+    // Default Constructor (Required by JPA)
     public AddressBook() {}
 
+    // Parameterized Constructor
     public AddressBook(Long id, String name, String address, String city, String phone) {
         this.id = id;
         this.name = name;
