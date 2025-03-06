@@ -1,9 +1,19 @@
 package com.bridgelabz.addressbook.model;
 
+<<<<<<< HEAD
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "address_book") // Defines table name
+=======
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data  // Generates getters, setters, toString(), equals(), and hashCode()
+@NoArgsConstructor  // Generates a no-args constructor
+@AllArgsConstructor // Generates a constructor with all fields
+>>>>>>> UC5
 public class AddressBook {
 
     @Id
@@ -14,6 +24,7 @@ public class AddressBook {
     private String address;
     private String city;
     private String phone;
+<<<<<<< HEAD
 
     // Default Constructor (Required by JPA)
     public AddressBook() {}
@@ -42,4 +53,6 @@ public class AddressBook {
 
     public String getPhone() { return phone; }
     public void setPhone(String phone) { this.phone = phone; }
+=======
+>>>>>>> UC5
 }
