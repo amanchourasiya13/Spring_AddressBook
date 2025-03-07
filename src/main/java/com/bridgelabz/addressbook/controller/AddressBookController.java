@@ -1,7 +1,8 @@
 package com.bridgelabz.addressbook.controller;
 
 import com.bridgelabz.addressbook.dto.AddressBookDTO;
-import com.bridgelabz.addressbook.model.AddressBook;
+import com.bridgelabz.addressbook.model.AddressBookModel;
+import com.bridgelabz.addressbook.model.AddressBookModel;
 import com.bridgelabz.addressbook.service.AddressBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,18 +18,18 @@ public class AddressBookController {
     private AddressBookService addressBookService;
 
     @PostMapping("/add")
-    public ResponseEntity<AddressBook> addAddress(@RequestBody AddressBookDTO addressBookDTO) {
+    public ResponseEntity<AddressBookModel> addAddress(@RequestBody AddressBookDTO addressBookDTO) {
         return ResponseEntity.ok(addressBookService.addAddress(addressBookDTO));
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<AddressBook>> getAllAddresses() {
+    public ResponseEntity<List<AddressBookModel>> getAllAddresses() {
         return ResponseEntity.ok(addressBookService.getAllAddresses());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getAddressById(@PathVariable Long id) {
-        AddressBook address = addressBookService.getAddressById(id);
+        AddressBookModel address = addressBookService.getAddressById(id);
         if (address == null) {
             return ResponseEntity.badRequest().body("Address with ID " + id + " not found!");
         }
@@ -37,7 +38,7 @@ public class AddressBookController {
 
     @PutMapping("/update/{id}")
     public ResponseEntity<?> updateAddress(@PathVariable Long id, @RequestBody AddressBookDTO addressBookDTO) {
-        AddressBook updatedAddress = addressBookService.updateAddress(id, addressBookDTO);
+        AddressBookModel updatedAddress = addressBookService.updateAddress(id, addressBookDTO);
         if (updatedAddress == null) {
             return ResponseEntity.badRequest().body("Address with ID " + id + " not found!");
         }

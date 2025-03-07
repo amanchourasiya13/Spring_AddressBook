@@ -1,21 +1,19 @@
 package com.bridgelabz.addressbook.model;
 
-<<<<<<< HEAD
-import jakarta.persistence.*;
 
-@Entity
-@Table(name = "address_book") // Defines table name
-=======
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Entity
+@Table(name = "address_book") // Defines table name
+
 @Data  // Generates getters, setters, toString(), equals(), and hashCode()
 @NoArgsConstructor  // Generates a no-args constructor
 @AllArgsConstructor // Generates a constructor with all fields
->>>>>>> UC5
-public class AddressBook {
 
+public class AddressBookModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-generate ID
     private Long id;
@@ -24,19 +22,19 @@ public class AddressBook {
     private String address;
     private String city;
     private String phone;
-<<<<<<< HEAD
 
-    // Default Constructor (Required by JPA)
-    public AddressBook() {}
 
-    // Parameterized Constructor
-    public AddressBook(Long id, String name, String address, String city, String phone) {
-        this.id = id;
-        this.name = name;
-        this.address = address;
-        this.city = city;
-        this.phone = phone;
-    }
+//    // Default Constructor (Required by JPA)
+//    public AddressBookModel() {}
+
+//    // Parameterized Constructor
+//    public AddressBookModel(Long id, String name, String address, String city, String phone) {
+//        this.id = id;
+//        this.name = name;
+//        this.address = address;
+//        this.city = city;
+//        this.phone = phone;
+//    }
 
     // Getters and Setters
     public Long getId() { return id; }
@@ -53,6 +51,5 @@ public class AddressBook {
 
     public String getPhone() { return phone; }
     public void setPhone(String phone) { this.phone = phone; }
-=======
->>>>>>> UC5
+
 }
